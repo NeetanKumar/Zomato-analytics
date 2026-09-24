@@ -18,7 +18,13 @@ REQUIRED_COOKIES = {"__SW"}
 
 def main():
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False, args=["--start-maximized"])
+        # Swiggy's bot-protection blocks Playwright's bundled "Chrome for
+        # Testing" build outright (403 on the homepage). Launching with
+        # channel="chrome" uses your real installed Chrome instead, which
+        # doesn't carry that fingerprint.
+        browser = p.chromium.launch(
+            headless=False, channel="chrome", args=["--start-maximized"]
+        )
         context = browser.new_context(viewport=None)
         page = context.new_page()
         page.goto("https://www.swiggy.com/", wait_until="domcontentloaded", timeout=60000)
