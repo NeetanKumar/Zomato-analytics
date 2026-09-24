@@ -1,0 +1,6 @@
+venv/
+cookies.json
+orders.json
+summary.csv
+__pycache__/
+*.pyc
