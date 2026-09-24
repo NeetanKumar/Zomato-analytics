@@ -13,20 +13,35 @@ not something to run at scale or share your session with.
 - Python 3.9+
 - A Zomato account with order history
 
-## Setup
+## Quickstart
 
 ```bash
 git clone https://github.com/NeetanKumar/Zomato-analytics.git
 cd Zomato-analytics
+./setup.sh
+source venv/bin/activate
+python3 run.py
+```
+
+`setup.sh` creates the virtual environment, installs everything, and sets
+up the browser Playwright needs. `run.py` then does the rest for you in one
+go: logs you in if there's no saved session (or if it's expired), fetches
+your order history, and prints the analytics — no need to run each step by
+hand.
+
+## Manual setup / usage
+
+If you'd rather run each step yourself (e.g. to just refresh `orders.json`
+without re-printing the summary), you can call the scripts directly.
+
+### Setup
+
+```bash
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 playwright install chromium
 ```
-
-## Usage
-
-Run these three scripts in order.
 
 ### 1. Log in
 
