@@ -17,13 +17,15 @@ REQUIRED_COOKIES = {"cid", "PHPSESSID", "zat"}
 
 def main():
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
-        context = browser.new_context()
+        browser = p.chromium.launch(headless=False, args=["--start-maximized"])
+        context = browser.new_context(viewport=None)
         page = context.new_page()
         page.goto("https://www.zomato.com/", wait_until="domcontentloaded", timeout=60000)
 
         print("\nA browser window has opened.")
-        print("Log in to Zomato with your phone number and OTP as usual.")
+        print("If a location/city popup or banner is covering the page, close it first.")
+        print("Then look for a small profile/person icon in the top-right corner and")
+        print("click it to log in with your phone number and OTP.")
         input("Once you're logged in and can see your account, press Enter here...\n")
 
         cookies = context.cookies()
