@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# One-command setup: creates the venv, installs dependencies, and installs
-# the Chromium browser Playwright needs for the login step.
+# One-command setup + run: creates the venv, installs dependencies,
+# installs the Chromium browser Playwright needs, then runs the app.
 set -e
 
 cd "$(dirname "$0")"
@@ -12,6 +12,4 @@ pip install -r requirements.txt -q
 playwright install chromium
 
 echo
-echo "Setup complete. Run the app with:"
-echo "  source venv/bin/activate"
-echo "  python3 run.py"
+python3 run.py
