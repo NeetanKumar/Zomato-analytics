@@ -45,8 +45,10 @@ def fetch_page(session: requests.Session, page: int) -> list[dict]:
     data = resp.json()
 
     entities = data.get("entities", {}).get("ORDER", {})
+    # Zomato returns {} when there are orders and [] once the pages run out.
+    order_values = entities.values() if isinstance(entities, dict) else entities
     orders = []
-    for order in entities.values():
+    for order in order_values:
         try:
             res_info = order.get("resInfo", {})
             establishment = res_info.get("establishment") or []
