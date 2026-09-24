@@ -8,7 +8,9 @@ from a real browser login — personal use only, not a public API.
 
 1. `./setup.sh` — installs everything and runs the app
 2. Log in with your phone/OTP when the browser opens, then press Enter
-3. Check `order_summary.md` and `summary.csv` for the results
+3. Open `order_summary.md` — that's your analytics report (spend, top
+   restaurants, monthly trends). `summary.csv` has the same data per
+   restaurant, for a spreadsheet.
 
 Already set up? Just run `source venv/bin/activate && python3 run.py`.
 
