@@ -67,7 +67,8 @@ def fetch_page(session: requests.Session, page: int) -> list[dict]:
     return orders
 
 
-def main():
+def main() -> bool:
+    """Fetches all orders and writes orders.json. Returns True on success."""
     cookie_header = load_cookie_header()
     session = requests.Session()
     session.headers.update(HEADERS)
@@ -89,10 +90,11 @@ def main():
             "No orders returned on the first page. Your session may have "
             "expired -- rerun login.py."
         )
-        return
+        return False
 
     ORDERS_FILE.write_text(json.dumps(all_orders, indent=2))
     print(f"Saved {len(all_orders)} orders to {ORDERS_FILE.resolve()}")
+    return True
 
 
 if __name__ == "__main__":

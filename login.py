@@ -15,7 +15,8 @@ COOKIE_FILE = Path("cookies.json")
 REQUIRED_COOKIES = {"cid", "PHPSESSID", "zat"}
 
 
-def main():
+def main() -> bool:
+    """Runs the interactive login flow. Returns True if it looks like login succeeded."""
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, args=["--start-maximized"])
         context = browser.new_context(viewport=None)
@@ -39,6 +40,7 @@ def main():
         print(f"Saved {len(cookies)} cookies to {COOKIE_FILE.resolve()}")
 
         browser.close()
+        return not missing
 
 
 if __name__ == "__main__":
