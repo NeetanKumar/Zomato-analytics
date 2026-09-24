@@ -1,8 +1,8 @@
 """
 Summarizes orders.json into a spending/ordering report.
-Run fetch_orders.py first. Prints a summary, writes summary.csv
-(per-restaurant breakdown), and writes order_summary.md (a readable
-version of the printed report) for further digging.
+Run fetch_orders.py first. Writes order_summary.md (the full readable
+report) and summary.csv (per-restaurant breakdown); prints just a short
+confirmation rather than dumping the whole report to the terminal.
 """
 
 import json
@@ -33,37 +33,13 @@ def main():
     avg_order = df["total_cost"].mean()
     date_range = f"{df['order_date'].min().date()} to {df['order_date'].max().date()}"
 
-    print("=" * 50)
-    print("ZOMATO ORDER SUMMARY")
-    print("=" * 50)
-    print(f"Date range:       {date_range}")
-    print(f"Total orders:     {total_orders}")
-    print(f"Total spent:      ₹{total_spent:,.0f}")
-    print(f"Average order:    ₹{avg_order:,.0f}")
-
-    print("\nTop 10 restaurants by number of orders:")
     top_by_count = df.groupby("restaurant_name").size().sort_values(ascending=False).head(10)
-    for name, count in top_by_count.items():
-        print(f"  {count:>3}x  {name}")
-
-    print("\nTop 10 restaurants by total spend:")
     top_by_spend = (
         df.groupby("restaurant_name")["total_cost"].sum().sort_values(ascending=False).head(10)
     )
-    for name, spend in top_by_spend.items():
-        print(f"  ₹{spend:>8,.0f}  {name}")
-
-    print("\nSpend by month:")
     monthly = df.groupby("month")["total_cost"].sum()
-    for month, spend in monthly.items():
-        print(f"  {month}: ₹{spend:,.0f}")
-
     if "establishment" in df.columns:
-        print("\nOrders by establishment type:")
         est_counts = df["establishment"].value_counts().head(10)
-        for est, count in est_counts.items():
-            label = est if est else "(unspecified)"
-            print(f"  {count:>3}x  {label}")
 
     per_restaurant = (
         df.groupby("restaurant_name")
@@ -122,8 +98,11 @@ def main():
 
     SUMMARY_MD.write_text("\n".join(md_lines) + "\n")
 
-    print(f"\nFull per-restaurant breakdown written to {SUMMARY_CSV.resolve()}")
-    print(f"Readable summary report written to {SUMMARY_MD.resolve()}")
+    print(
+        f"{total_orders} orders, ₹{total_spent:,.0f} total -- "
+        f"full report written to {SUMMARY_MD.resolve()} "
+        f"(and {SUMMARY_CSV.resolve()})"
+    )
 
 
 if __name__ == "__main__":
