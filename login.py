@@ -20,7 +20,7 @@ def main():
         browser = p.chromium.launch(headless=False)
         context = browser.new_context()
         page = context.new_page()
-        page.goto("https://www.zomato.com/")
+        page.goto("https://www.zomato.com/", wait_until="domcontentloaded", timeout=60000)
 
         print("\nA browser window has opened.")
         print("Log in to Zomato with your phone number and OTP as usual.")
