@@ -2,9 +2,6 @@ venv/
 cookies.json
 orders.json
 summary.csv
-swiggy_cookies.json
-swiggy_orders.json
-swiggy_summary.csv
 order_summary.md
 monthly_spend_last_7_months.md
 __pycache__/
