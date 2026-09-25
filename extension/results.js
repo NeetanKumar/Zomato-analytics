@@ -1,13 +1,16 @@
 const ORDERS_ENDPOINT = "https://www.zomato.com/webroutes/user/orders";
 
 const analyzeBtn = document.getElementById("analyze-btn");
+const printBtn = document.getElementById("print-btn");
 const statusEl = document.getElementById("status");
 const resultsEl = document.getElementById("results");
 
 analyzeBtn.addEventListener("click", runAnalysis);
+printBtn.addEventListener("click", () => window.print());
 
 async function runAnalysis() {
   analyzeBtn.disabled = true;
+  printBtn.hidden = true;
   resultsEl.hidden = true;
   setStatus("Fetching your orders...");
 
@@ -143,6 +146,7 @@ function render(orders) {
   renderTable("establishment", establishmentRows, (n) => `${n}x`);
 
   resultsEl.hidden = false;
+  printBtn.hidden = false;
 }
 
 function statCard(label, value) {

@@ -1,0 +1,129 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #1f1f1f;
+  background: #fafafa;
+}
+
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px 24px 60px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+h1 {
+  font-size: 22px;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+button {
+  padding: 9px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#analyze-btn {
+  background: #e23744;
+  color: white;
+}
+
+#analyze-btn:disabled {
+  background: #ccc;
+  cursor: default;
+}
+
+#print-btn {
+  background: #eee;
+  color: #1f1f1f;
+}
+
+#status {
+  font-size: 13px;
+  color: #666;
+  min-height: 18px;
+}
+
+h2 {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #666;
+  margin: 28px 0 10px;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.stat {
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+
+.stat .label {
+  font-size: 11px;
+  color: #777;
+}
+
+.stat .value {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+table td {
+  padding: 6px 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+table td.num {
+  text-align: right;
+  white-space: nowrap;
+  color: #444;
+}
+
+@media print {
+  body {
+    background: white;
+  }
+  #analyze-btn,
+  #print-btn,
+  #status {
+    display: none !important;
+  }
+  .stat-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  section {
+    break-inside: avoid;
+  }
+}
