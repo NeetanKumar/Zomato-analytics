@@ -11,10 +11,12 @@ There are two ways to use it — pick one.
 
 Shows your analytics as a page in your browser, with a print/PDF button.
 
-1. Go to `chrome://extensions`, turn on **Developer mode**, click **Load
-   unpacked**, and select the [`extension/`](extension) folder
-2. Make sure you're logged into zomato.com in that browser
-3. Click the extension icon, then **Analyze my orders**
+1. Go to [chrome://extensions](chrome://extensions)
+2. Turn on the **Developer mode** toggle
+3. Click **Load unpacked**, then select the [`extension/`](extension)
+   folder once you've downloaded it to your system
+4. Make sure you're logged into zomato.com in that browser
+5. Click the extension icon, then **Analyze my orders**
 
 ## Option 2: Run it from the terminal
 
