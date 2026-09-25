@@ -1,29 +1,35 @@
 # Zomato Analytics
 
-Pulls your Zomato order history and summarizes it: spend, top restaurants,
-monthly trends. Uses Zomato's internal order-history endpoint via cookies
-from a real browser login — personal use only, not a public API.
+See your Zomato order history at a glance: total spend, favorite
+restaurants, monthly trends. Works by reading your own order history after
+you log in — no official Zomato API for this exists, so this is a personal
+tool for your own account, not something to share your login with.
 
-## Usage
+There are two ways to use it — pick one.
 
-1. `./setup.sh` — installs everything and runs the app
+## Option 1: Browser extension (easiest)
+
+Shows your analytics as a page in your browser, with a print/PDF button.
+
+1. Go to `chrome://extensions`, turn on **Developer mode**, click **Load
+   unpacked**, and select the [`extension/`](extension) folder
+2. Make sure you're logged into zomato.com in that browser
+3. Click the extension icon, then **Analyze my orders**
+
+## Option 2: Run it from the terminal
+
+1. `./setup.sh`
 2. Log in with your phone/OTP when the browser opens, then press Enter
-3. Open `order_summary.md` — that's your analytics report (spend, top
-   restaurants, monthly trends). `summary.csv` has the same data per
-   restaurant, for a spreadsheet.
+3. Open `order_summary.md` for the report (`summary.csv` has the same
+   numbers per restaurant, for a spreadsheet)
 
 Already set up? Just run `source venv/bin/activate && python3 run.py`.
 
-Need to run a step on its own instead? `login.py` → `fetch_orders.py` →
-`analyze.py`, in that order.
-
-Prefer a browser popup over the terminal? See [`extension/`](extension) —
-a Chrome extension version that shows the same analytics in a popup UI
-using your browser's own logged-in Zomato session (no scripts to run).
-
 ## Notes
 
-- `cookies.json`, `orders.json`, `summary.csv`, `order_summary.md` are
-  gitignored — personal data, not project source.
-- If fetching returns nothing, your session expired — rerun `login.py`.
-- Relies on an undocumented endpoint, so it may break if Zomato changes it.
+- Both options only work with your own account and your own login — no
+  data is sent anywhere else.
+- This reads Zomato's internal order-history data, not an official API, so
+  it may stop working if Zomato changes their site.
+- If it stops returning orders, your login session has likely expired —
+  just log in again.
