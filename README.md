@@ -11,7 +11,7 @@ There are two ways to use it — pick one.
 
 Shows your analytics as a page in your browser, with a print/PDF button.
 
-1. Go to [chrome://extensions](chrome://extensions)
+1. Open `chrome://extensions` in Chrome
 2. Turn on the **Developer mode** toggle
 3. Click **Load unpacked**, then select the [`extension/`](extension)
    folder once you've downloaded it to your system
