@@ -17,6 +17,10 @@ Already set up? Just run `source venv/bin/activate && python3 run.py`.
 Need to run a step on its own instead? `login.py` → `fetch_orders.py` →
 `analyze.py`, in that order.
 
+Prefer a browser popup over the terminal? See [`extension/`](extension) —
+a Chrome extension version that shows the same analytics in a popup UI
+using your browser's own logged-in Zomato session (no scripts to run).
+
 ## Notes
 
 - `cookies.json`, `orders.json`, `summary.csv`, `order_summary.md` are

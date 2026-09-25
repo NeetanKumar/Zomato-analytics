@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Zomato Order Analytics",
+  "version": "1.0.0",
+  "description": "See spend, top restaurants, and monthly trends from your own Zomato order history.",
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "host_permissions": ["https://www.zomato.com/*"]
+}
